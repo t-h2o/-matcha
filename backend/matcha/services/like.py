@@ -4,6 +4,16 @@ from matcha.utils import get_id_where_username_else_error
 
 from matcha.db.user import db_get_username_where_id
 
+from matcha.utils import check_request_json_values
+
+from matcha.db.user import db_get_id_where_username
+from matcha.db.user import db_get_username_where_id
+from matcha.utils import check_request_json_values
+
+from matcha.db.user import db_get_id_where_username
+from matcha.db.user import db_get_username_where_id
+from matcha.db.user import db_update_by_one_fame_rating
+
 from matcha.db.notification import db_put_notification
 
 from matcha.db.like import (
@@ -34,6 +44,7 @@ def services_like_user(id_user, request):
             return error
 
         id_to_notify = get_id_where_username_else_error(json["like"])
+        db_update_by_one_fame_rating(id_to_notify)
         if not isinstance(id_to_notify, int):
             return id_to_notify
 

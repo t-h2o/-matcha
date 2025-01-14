@@ -150,3 +150,23 @@ def db_delete_user(id_user):
         return error_msg, 401
 
     return {"success": "user delete"}, 200
+
+
+def db_update_by_one_fame_rating(id_user):
+    query = """
+    UPDATE users
+    SET fame_rating
+    = cast(profile_complete as int)
+    + (select count (*) from user_likes where liked_id = %s)
+    + cast(((select count (*) from user_likes where liked_id = %s) > 10) as int)
+    WHERE id = %s;
+    """
+
+    return db_query(
+        query,
+        (
+            id_user,
+            id_user,
+            id_user,
+        ),
+    )

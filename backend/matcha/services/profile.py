@@ -21,6 +21,7 @@ from matcha.db.user import (
     db_get_user_per_id,
     db_get_user_per_username,
     db_get_username_where_id,
+    db_update_by_one_fame_rating,
 )
 
 from matcha.db.interests import (
@@ -66,6 +67,7 @@ def services_profile(id_user, request):
         error_msg = _profile_put(id_user, request)
         if error_msg:
             return error_msg
+        db_update_by_one_fame_rating(id_user)
 
     user_db = db_get_user_per_id(id_user)
     profile_picture = db_get_url_profile(id_user)

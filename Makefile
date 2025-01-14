@@ -7,7 +7,7 @@ stop-dev:
 	docker compose -f docker-compose.dev.yml down
 
 clean-dev: stop-dev
-	docker volume rm postgres-volume-dev | true
+	docker volume rm postgres-volume-dev || true
 	rm .env
 
 clean-prod: stop-prod

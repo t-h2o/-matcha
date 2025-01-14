@@ -1397,6 +1397,27 @@ def test_like_user():
             "likers": [],
         },
     )
+    check_get_token(
+        "/api/profile",
+        200,
+        {
+            "age": 22,
+            "bio": "I am a very interesting person. I like to do interesting things and go to interesting places. I am looking for someone who is also interesting.",
+            "email": "email@email.com",
+            "email_verified": False,
+            "fameRating": 1,
+            "firstname": "Johnny",
+            "interests": [],
+            "lastname": "Appleseed",
+            "likedBy": [],
+            "profile_complete": True,
+            "selectedGender": "m",
+            "sexualPreference": "e",
+            "urlProfile": "http://localhost:5001/api/images/avatar.png",
+            "username": "user",
+            "visitedBy": [],
+        },
+    )
 
 
 def _test_delete_notification():
